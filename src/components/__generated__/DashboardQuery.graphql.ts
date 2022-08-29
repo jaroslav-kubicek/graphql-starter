@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<4fcb48d7e5d9ddef2b776552f2eb39a1>>
+ * @generated SignedSource<<1ae56df716a1ae52b91f71458d09b911>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,9 +11,18 @@
 import { ConcreteRequest, Query } from 'relay-runtime';
 export type DashboardQuery$variables = {};
 export type DashboardQuery$data = {
-  readonly viewer: {
-    readonly login: string;
-  };
+  readonly user: {
+    readonly avatarUrl: any;
+    readonly followers: {
+      readonly totalCount: number;
+    };
+    readonly following: {
+      readonly totalCount: number;
+    };
+    readonly id: string;
+    readonly name: string | null;
+    readonly twitterUsername: string | null;
+  } | null;
 };
 export type DashboardQuery = {
   response: DashboardQuery$data;
@@ -21,33 +30,95 @@ export type DashboardQuery = {
 };
 
 const node: ConcreteRequest = (function(){
-var v0 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "login",
-  "storageKey": null
-};
+var v0 = [
+  {
+    "alias": null,
+    "args": null,
+    "kind": "ScalarField",
+    "name": "totalCount",
+    "storageKey": null
+  }
+],
+v1 = [
+  {
+    "alias": null,
+    "args": [
+      {
+        "kind": "Literal",
+        "name": "login",
+        "value": "gaearon"
+      }
+    ],
+    "concreteType": "User",
+    "kind": "LinkedField",
+    "name": "user",
+    "plural": false,
+    "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "id",
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "name",
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "twitterUsername",
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": [
+          {
+            "kind": "Literal",
+            "name": "size",
+            "value": 100
+          }
+        ],
+        "kind": "ScalarField",
+        "name": "avatarUrl",
+        "storageKey": "avatarUrl(size:100)"
+      },
+      {
+        "alias": null,
+        "args": null,
+        "concreteType": "FollowerConnection",
+        "kind": "LinkedField",
+        "name": "followers",
+        "plural": false,
+        "selections": (v0/*: any*/),
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "concreteType": "FollowingConnection",
+        "kind": "LinkedField",
+        "name": "following",
+        "plural": false,
+        "selections": (v0/*: any*/),
+        "storageKey": null
+      }
+    ],
+    "storageKey": "user(login:\"gaearon\")"
+  }
+];
 return {
   "fragment": {
     "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
     "name": "DashboardQuery",
-    "selections": [
-      {
-        "alias": null,
-        "args": null,
-        "concreteType": "User",
-        "kind": "LinkedField",
-        "name": "viewer",
-        "plural": false,
-        "selections": [
-          (v0/*: any*/)
-        ],
-        "storageKey": null
-      }
-    ],
+    "selections": (v1/*: any*/),
     "type": "Query",
     "abstractKey": null
   },
@@ -56,39 +127,19 @@ return {
     "argumentDefinitions": [],
     "kind": "Operation",
     "name": "DashboardQuery",
-    "selections": [
-      {
-        "alias": null,
-        "args": null,
-        "concreteType": "User",
-        "kind": "LinkedField",
-        "name": "viewer",
-        "plural": false,
-        "selections": [
-          (v0/*: any*/),
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "id",
-            "storageKey": null
-          }
-        ],
-        "storageKey": null
-      }
-    ]
+    "selections": (v1/*: any*/)
   },
   "params": {
-    "cacheID": "c3188bee677dd551885d97c35d811052",
+    "cacheID": "143e7137185f4c5242a837e676b7c1c4",
     "id": null,
     "metadata": {},
     "name": "DashboardQuery",
     "operationKind": "query",
-    "text": "query DashboardQuery {\n  viewer {\n    login\n    id\n  }\n}\n"
+    "text": "query DashboardQuery {\n  user(login: \"gaearon\") {\n    id\n    name\n    twitterUsername\n    avatarUrl(size: 100)\n    followers {\n      totalCount\n    }\n    following {\n      totalCount\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "73df913d3d1e42e3c80a8cafdfef31b4";
+(node as any).hash = "078e73da11d59867fe373fee7ae9dcbd";
 
 export default node;
