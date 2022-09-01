@@ -1,3 +1,4 @@
+// FIXME: uncomment the line above and fix issues
 import React from 'react';
 import { useLazyLoadQuery, graphql } from 'react-relay';
 import Heading from "@kiwicom/orbit-components/lib/Heading";
