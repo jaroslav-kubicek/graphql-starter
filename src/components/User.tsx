@@ -1,20 +1,43 @@
 import React from "react";
+import { useFragment, graphql } from 'react-relay';
 
 import Card from "@kiwicom/orbit-components/lib/Card";
 import Stack from "@kiwicom/orbit-components/lib/Stack";
 import Text from "@kiwicom/orbit-components/lib/Text";
 import TextLink from "@kiwicom/orbit-components/lib/TextLink";
 
-// FIXME: use real data here
-export const User = () => {
+import type { User_user$key } from "./__generated__/User_user.graphql";
+
+type Props = {
+  userRef: User_user$key
+};
+
+export const User = ({ userRef }: Props) => {
+  const user = useFragment(
+    graphql`
+      fragment User_user on User {
+        name
+        twitterUsername
+        avatarUrl(size: 100)
+        followers {
+          totalCount
+        }
+        following {
+          totalCount
+        }
+      }
+    `,
+    userRef,
+  );
+
   return (
     <Card 
-      icon={<img alt="user" src="https://avatars.githubusercontent.com/u/810438?s=100&u=36b11d1db9c2380295b4371a98de87ab6b4c898f&v=4" />}
+      icon={<img alt={user.name ?? "user avatar"} src={user.avatarUrl} />}
       header={(
         <Stack align="center" inline justify="end" >
-          <TextLink href="https://twitter.com/twitterHandle">@twitterHandle</TextLink>
-          <Text>Followers: 123</Text>
-          <Text>Following: 45</Text>
+          <TextLink href={`"https://twitter.com/${user.twitterUsername}`}>@{user.twitterUsername}</TextLink>
+          <Text>Followers: {user.followers.totalCount}</Text>
+          <Text>Following: {user.following.totalCount}</Text>
         </Stack>
       )}
     />
