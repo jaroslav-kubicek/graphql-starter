@@ -14,6 +14,7 @@ export const Dashboard = () => {
       query DashboardQuery($login: String!) {
         user(login:$login) {
           ...User_user
+          ...Repositories_repositories
         }
       }
       `,
@@ -24,7 +25,7 @@ export const Dashboard = () => {
     <Stack>
       {data.user ? <User userRef={data.user} /> : null}
       <Heading>Repositories</Heading>
-      <Repositories />
+      {data.user ? <Repositories repositoriesRef={data.user} /> : null}
     </Stack>
   );
 }
