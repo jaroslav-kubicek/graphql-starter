@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Up & running
 
-First of all, you need to set GitHub Auth token, you can generate one in [GitHub settings](https://github.com/settings/tokens):
+First of all, you need to set GitHub Auth token, you can generate one in [GitHub settings](https://github.com/settings/tokens/new?description=pbctl&scopes=repo,user:email,admin:public_key,read:org):
 
 ```
 export REACT_APP_GITHUB_AUTH_TOKEN=<token>
@@ -30,29 +30,13 @@ yarn relay --watch
 
 > Tip: You can use also [GitHub GraphQL Explorer](https://docs.github.com/en/graphql/overview/explorer) to consult GraphQL schema and try out queries.
 
-## Available Scripts
+## Exercise
 
-In the project directory, you can run:
+The goal of this exercise is to understand how to define data requirements for the component with `useFragment` hook.
 
-### `yarn start`
+1. Go to [Dashboard](https://github.com/jaroslav-kubicek/graphql-starter/blob/main/src/components/Dashboard.tsx) component and remove `/* eslint-disable relay/unused-fields */`
+2. Fix eslint rules by asking only for fields we need
+   1. you should use [useFragment](https://relay.dev/docs/api-reference/use-fragment/) in [User](https://github.com/jaroslav-kubicek/graphql-starter/blob/main/src/components/User.tsx) component and reference that fragment in the Dashboard query
+2. Do not hardcode `login: "gaearon"` in the query, instead pass it as variable to the query
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Possible solution can be found in `step-i` branch.

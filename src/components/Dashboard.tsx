@@ -10,25 +10,26 @@ import { Repositories } from './Repositories';
 import type { DashboardQuery } from './__generated__/DashboardQuery.graphql';
 
 export const Dashboard = () => {
-    const data = useLazyLoadQuery<DashboardQuery>(
-        graphql`
-        query DashboardQuery {
-          user(login: "gaearon") {
-            id
-            name
-            twitterUsername
-            avatarUrl(size: 100)
-            followers {
-              totalCount
-            }
-            following {
-              totalCount
-            }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const data = useLazyLoadQuery<DashboardQuery>(
+      graphql`
+      query DashboardQuery {
+        user(login: "gaearon") {
+          id
+          name
+          twitterUsername
+          avatarUrl(size: 100)
+          followers {
+            totalCount
+          }
+          following {
+            totalCount
           }
         }
-        `,
-        {}
-    );
+      }
+      `,
+      {}
+  );
 
   return (
     <Stack>
