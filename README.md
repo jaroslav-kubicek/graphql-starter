@@ -32,11 +32,9 @@ yarn relay --watch
 
 ## Exercise
 
-The goal of this exercise is to understand how to define data requirements for the component with `useFragment` hook.
+The goal of this exercise is to render a paginated list of repositories in the Repositories component, using [usePaginationFragment](https://relay.dev/docs/api-reference/use-pagination-fragment/#usepaginationfragment) hook.
 
-1. Go to [Dashboard](https://github.com/jaroslav-kubicek/graphql-starter/blob/main/src/components/Dashboard.tsx) component and remove `/* eslint-disable relay/unused-fields */`
-2. Fix eslint rules by asking only for fields we need
-   1. you should use [useFragment](https://relay.dev/docs/api-reference/use-fragment/) in [User](https://github.com/jaroslav-kubicek/graphql-starter/blob/main/src/components/User.tsx) component and reference that fragment in the Dashboard query
-2. Do not hardcode `login: "gaearon"` in the query, instead pass it as variable to the query
+- There should be 20 repositories displayed by default.
+- A the bottom, there should be a button that can load the next 20 repositories.
 
-Possible solution can be found in `step-i` branch.
+A possible solution can be found in `step-ii` branch.
