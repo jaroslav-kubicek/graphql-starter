@@ -5,6 +5,7 @@ import { graphql, usePaginationFragment } from 'react-relay';
 import Button from '@kiwicom/orbit-components/lib/Button';
 
 import type { Repositories_repositories$key } from './__generated__/Repositories_repositories.graphql';
+import { ShowDetail } from './ShowDetail';
 
 type Props = {
   repositoriesRef: Repositories_repositories$key,
@@ -39,6 +40,7 @@ export const Repositories = ({ repositoriesRef }: Props) => {
           key={edge?.node?.id} 
           title={edge?.node?.name} 
           description={edge?.node?.description} 
+          actions={<ShowDetail />}
         />))}
         {hasNext && (
         <Button disabled={isLoadingNext} onClick={() => { loadNext(50) }}>Load more</Button>
