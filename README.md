@@ -32,9 +32,6 @@ yarn relay --watch
 
 ## Exercise
 
-The goal of this exercise is to render a paginated list of repositories in the Repositories component, using [usePaginationFragment](https://relay.dev/docs/api-reference/use-pagination-fragment/#usepaginationfragment) hook.
+The goal of this exercise is to show a paginated list of pull requests for the given repository in a modal dialog when a user clicks on "Show Detail".
 
-- There should be 20 repositories displayed by default.
-- A the bottom, there should be a button that can load the next 20 repositories.
-
-A possible solution can be found in `step-ii` branch.
+- Try to use [usePreloadedQuery](https://relay.dev/docs/api-reference/use-preloaded-query/) -> data should be fetched already when a user hovers over the "Show Detail" button.
