@@ -1,19 +1,47 @@
 import React, { useRef } from 'react';
 import { Button, Stack, InputField } from "@kiwicom/orbit-components";
+import { graphql, useMutation } from 'react-relay';
+import { AddCommentMutation } from './__generated__/AddCommentMutation.graphql';
 
 type Props = {
   discussionId: string;
+  connectionId: string;
 };
 
-export const AddComment = ({ discussionId }: Props) => {
+export const AddComment = ({ discussionId, connectionId }: Props) => {
+  const [addComment, isAddingComment] = useMutation<AddCommentMutation>(graphql`
+    mutation AddCommentMutation($connections: [ID!]!, $input: AddDiscussionCommentInput!) @raw_response_type {
+      addDiscussionComment(input: $input) {
+        comment @prependNode(connections: $connections, edgeTypeName: "DiscussionCommentEdge") {
+          ...Comment
+        }
+      }
+    }
+  `)
   const input = useRef<HTMLInputElement>(null);
   const onAdd = () => {
     if (!input.current?.value) {
       return;
     }
 
-    // TODO call mutation to create a new comment
-    console.log(input.current.value, discussionId);
+    addComment({ 
+      optimisticResponse: {
+        addDiscussionComment: {
+          comment: {
+            id: 'random_id',
+            body: input.current.value,
+            author: {
+              __typename: 'Actor',
+              __isNode: '',
+              id: 'unknown',
+              login: 'unknown',
+            },
+          }
+        }
+      }, variables: { 
+        input: { body: input.current.value, discussionId }, 
+        connections: [connectionId] },
+    },);
 
     input.current.value = '';
   };
@@ -24,7 +52,7 @@ export const AddComment = ({ discussionId }: Props) => {
         label="Text:"
         ref={input}
       />
-      <Button onClick={onAdd}>Add comment</Button>
+      <Button loading={isAddingComment} onClick={onAdd}>Add comment</Button>
     </Stack>
   );
 };

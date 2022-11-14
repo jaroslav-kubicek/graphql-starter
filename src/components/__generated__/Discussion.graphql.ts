@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f69efe508669e840136bb651509a7be7>>
+ * @generated SignedSource<<dffd63d306a9032405401f629bbccfa9>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,13 +12,11 @@ import { ReaderFragment, RefetchableFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type Discussion$data = {
   readonly comments: {
+    readonly __id: string;
     readonly edges: ReadonlyArray<{
       readonly node: {
-        readonly author: {
-          readonly login: string;
-        } | null;
-        readonly body: string;
         readonly id: string;
+        readonly " $fragmentSpreads": FragmentRefs<"Comment">;
       } | null;
     } | null> | null;
   };
@@ -109,29 +107,9 @@ return {
               "selections": [
                 (v1/*: any*/),
                 {
-                  "alias": null,
                   "args": null,
-                  "kind": "ScalarField",
-                  "name": "body",
-                  "storageKey": null
-                },
-                {
-                  "alias": null,
-                  "args": null,
-                  "concreteType": null,
-                  "kind": "LinkedField",
-                  "name": "author",
-                  "plural": false,
-                  "selections": [
-                    {
-                      "alias": null,
-                      "args": null,
-                      "kind": "ScalarField",
-                      "name": "login",
-                      "storageKey": null
-                    }
-                  ],
-                  "storageKey": null
+                  "kind": "FragmentSpread",
+                  "name": "Comment"
                 },
                 {
                   "alias": null,
@@ -177,6 +155,18 @@ return {
             }
           ],
           "storageKey": null
+        },
+        {
+          "kind": "ClientExtension",
+          "selections": [
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "__id",
+              "storageKey": null
+            }
+          ]
         }
       ],
       "storageKey": null
@@ -187,6 +177,6 @@ return {
 };
 })();
 
-(node as any).hash = "b5afd5917c33aa798f6101dc9bcd9495";
+(node as any).hash = "635983740b38a997b18280d3db8d518d";
 
 export default node;

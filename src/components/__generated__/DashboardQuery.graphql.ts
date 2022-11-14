@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a40fb67c80563696ccb0dc98b708e8e9>>
+ * @generated SignedSource<<5257d93314bd9bd26fb1f78f92f1663c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -249,6 +249,18 @@ return {
                       }
                     ],
                     "storageKey": null
+                  },
+                  {
+                    "kind": "ClientExtension",
+                    "selections": [
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "__id",
+                        "storageKey": null
+                      }
+                    ]
                   }
                 ],
                 "storageKey": "comments(first:20)"
@@ -272,12 +284,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "b609dd35373488c3804f7782455c796d",
+    "cacheID": "af313870e093135629d5539b83221375",
     "id": null,
     "metadata": {},
     "name": "DashboardQuery",
     "operationKind": "query",
-    "text": "query DashboardQuery(\n  $repo: String!\n  $owner: String!\n  $discussion: Int!\n) {\n  repository(name: $repo, owner: $owner) {\n    discussion(number: $discussion) {\n      ...Discussion\n      id\n    }\n    id\n  }\n}\n\nfragment Discussion on Discussion {\n  id\n  comments(first: 20) {\n    edges {\n      node {\n        id\n        body\n        author {\n          __typename\n          login\n          ... on Node {\n            __isNode: __typename\n            id\n          }\n        }\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
+    "text": "query DashboardQuery(\n  $repo: String!\n  $owner: String!\n  $discussion: Int!\n) {\n  repository(name: $repo, owner: $owner) {\n    discussion(number: $discussion) {\n      ...Discussion\n      id\n    }\n    id\n  }\n}\n\nfragment Comment on DiscussionComment {\n  body\n  author {\n    __typename\n    login\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n}\n\nfragment Discussion on Discussion {\n  id\n  comments(first: 20) {\n    edges {\n      node {\n        id\n        ...Comment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
   }
 };
 })();

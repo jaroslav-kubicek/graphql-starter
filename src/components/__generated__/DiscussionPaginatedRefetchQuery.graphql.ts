@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<6154a08ab13acb7e6323564b5da2050e>>
+ * @generated SignedSource<<2802a9730860391b442561ce1d00aa08>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -227,6 +227,18 @@ return {
                       }
                     ],
                     "storageKey": null
+                  },
+                  {
+                    "kind": "ClientExtension",
+                    "selections": [
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "__id",
+                        "storageKey": null
+                      }
+                    ]
                   }
                 ],
                 "storageKey": null
@@ -250,16 +262,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "d261e1e8a06255de2cfd09f00874e03a",
+    "cacheID": "d47bab68828b93899e80f04ecf9fb3dd",
     "id": null,
     "metadata": {},
     "name": "DiscussionPaginatedRefetchQuery",
     "operationKind": "query",
-    "text": "query DiscussionPaginatedRefetchQuery(\n  $after: String\n  $count: Int = 20\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...Discussion_2QE1um\n    id\n  }\n}\n\nfragment Discussion_2QE1um on Discussion {\n  id\n  comments(first: $count, after: $after) {\n    edges {\n      node {\n        id\n        body\n        author {\n          __typename\n          login\n          ... on Node {\n            __isNode: __typename\n            id\n          }\n        }\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
+    "text": "query DiscussionPaginatedRefetchQuery(\n  $after: String\n  $count: Int = 20\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...Discussion_2QE1um\n    id\n  }\n}\n\nfragment Comment on DiscussionComment {\n  body\n  author {\n    __typename\n    login\n    ... on Node {\n      __isNode: __typename\n      id\n    }\n  }\n}\n\nfragment Discussion_2QE1um on Discussion {\n  id\n  comments(first: $count, after: $after) {\n    edges {\n      node {\n        id\n        ...Comment\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "b5afd5917c33aa798f6101dc9bcd9495";
+(node as any).hash = "635983740b38a997b18280d3db8d518d";
 
 export default node;

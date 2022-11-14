@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Card from "@kiwicom/orbit-components/lib/Card";
 import { graphql, usePaginationFragment } from 'react-relay';
 
 import { Discussion$key } from './__generated__/Discussion.graphql';
 import { AddComment } from './AddComment';
+import { Comment } from './Comment';
 
 type Props = {
   discussion: Discussion$key;
@@ -17,13 +17,11 @@ export const Discussion = ({ discussion }: Props) => {
     @refetchable(queryName: "DiscussionPaginatedRefetchQuery") {
       id
       comments(first: $count, after: $after) @connection(key: "Discussions_comments") {
+        __id
         edges {
           node {
             id
-            body
-            author {
-              login
-            }
+            ...Comment
           }
         }
       }
@@ -45,11 +43,12 @@ export const Discussion = ({ discussion }: Props) => {
 
     return [edge.node];
   }) ?? [];
+  const connectionId = data.comments.__id;
 
   return (
     <>
-      <AddComment discussionId={data.id} />
-      {nodes.map((node) => (<Card key={node.id} title={node.author?.login} description={node.body} />))}
+      <AddComment discussionId={data.id} connectionId={connectionId} />
+      {nodes.map((node) => (<Comment key={node.id} comment={node} />))}
     </>
   );
 }
