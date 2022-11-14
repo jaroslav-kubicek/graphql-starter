@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f05e03e7a7b13a90d45f8683c98d1d99>>
+ * @generated SignedSource<<6154a08ab13acb7e6323564b5da2050e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -250,16 +250,16 @@ return {
     ]
   },
   "params": {
-    "cacheID": "272a0c516c079a25658ff3281901efd4",
+    "cacheID": "d261e1e8a06255de2cfd09f00874e03a",
     "id": null,
     "metadata": {},
     "name": "DiscussionPaginatedRefetchQuery",
     "operationKind": "query",
-    "text": "query DiscussionPaginatedRefetchQuery(\n  $after: String\n  $count: Int = 20\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...Discussion_2QE1um\n    id\n  }\n}\n\nfragment Discussion_2QE1um on Discussion {\n  comments(first: $count, after: $after) {\n    edges {\n      node {\n        id\n        body\n        author {\n          __typename\n          login\n          ... on Node {\n            __isNode: __typename\n            id\n          }\n        }\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n"
+    "text": "query DiscussionPaginatedRefetchQuery(\n  $after: String\n  $count: Int = 20\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...Discussion_2QE1um\n    id\n  }\n}\n\nfragment Discussion_2QE1um on Discussion {\n  id\n  comments(first: $count, after: $after) {\n    edges {\n      node {\n        id\n        body\n        author {\n          __typename\n          login\n          ... on Node {\n            __isNode: __typename\n            id\n          }\n        }\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "1273a9db1f12dc98515983ee3436caac";
+(node as any).hash = "b5afd5917c33aa798f6101dc9bcd9495";
 
 export default node;

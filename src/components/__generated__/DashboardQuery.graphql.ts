@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<c6f0b3d5dfb4b39adda0b76022999f7a>>
+ * @generated SignedSource<<a40fb67c80563696ccb0dc98b708e8e9>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -62,20 +62,20 @@ v4 = [
     "variableName": "discussion"
   }
 ],
-v5 = [
-  {
-    "kind": "Literal",
-    "name": "first",
-    "value": 20
-  }
-],
-v6 = {
+v5 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "id",
   "storageKey": null
 },
+v6 = [
+  {
+    "kind": "Literal",
+    "name": "first",
+    "value": 20
+  }
+],
 v7 = {
   "alias": null,
   "args": null,
@@ -151,9 +151,10 @@ return {
             "name": "discussion",
             "plural": false,
             "selections": [
+              (v5/*: any*/),
               {
                 "alias": null,
-                "args": (v5/*: any*/),
+                "args": (v6/*: any*/),
                 "concreteType": "DiscussionCommentConnection",
                 "kind": "LinkedField",
                 "name": "comments",
@@ -175,7 +176,7 @@ return {
                         "name": "node",
                         "plural": false,
                         "selections": [
-                          (v6/*: any*/),
+                          (v5/*: any*/),
                           {
                             "alias": null,
                             "args": null,
@@ -202,7 +203,7 @@ return {
                               {
                                 "kind": "InlineFragment",
                                 "selections": [
-                                  (v6/*: any*/)
+                                  (v5/*: any*/)
                                 ],
                                 "type": "Node",
                                 "abstractKey": "__isNode"
@@ -254,30 +255,29 @@ return {
               },
               {
                 "alias": null,
-                "args": (v5/*: any*/),
+                "args": (v6/*: any*/),
                 "filters": null,
                 "handle": "connection",
                 "key": "Discussions_comments",
                 "kind": "LinkedHandle",
                 "name": "comments"
-              },
-              (v6/*: any*/)
+              }
             ],
             "storageKey": null
           },
-          (v6/*: any*/)
+          (v5/*: any*/)
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "647f736e1584b97e838f5687ef1659cf",
+    "cacheID": "b609dd35373488c3804f7782455c796d",
     "id": null,
     "metadata": {},
     "name": "DashboardQuery",
     "operationKind": "query",
-    "text": "query DashboardQuery(\n  $repo: String!\n  $owner: String!\n  $discussion: Int!\n) {\n  repository(name: $repo, owner: $owner) {\n    discussion(number: $discussion) {\n      ...Discussion\n      id\n    }\n    id\n  }\n}\n\nfragment Discussion on Discussion {\n  comments(first: 20) {\n    edges {\n      node {\n        id\n        body\n        author {\n          __typename\n          login\n          ... on Node {\n            __isNode: __typename\n            id\n          }\n        }\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n"
+    "text": "query DashboardQuery(\n  $repo: String!\n  $owner: String!\n  $discussion: Int!\n) {\n  repository(name: $repo, owner: $owner) {\n    discussion(number: $discussion) {\n      ...Discussion\n      id\n    }\n    id\n  }\n}\n\nfragment Discussion on Discussion {\n  id\n  comments(first: 20) {\n    edges {\n      node {\n        id\n        body\n        author {\n          __typename\n          login\n          ... on Node {\n            __isNode: __typename\n            id\n          }\n        }\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
   }
 };
 })();

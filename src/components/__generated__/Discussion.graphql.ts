@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<410b7a42be1023ad43beafbcaa1eb034>>
+ * @generated SignedSource<<f69efe508669e840136bb651509a7be7>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -82,6 +82,7 @@ return {
   },
   "name": "Discussion",
   "selections": [
+    (v1/*: any*/),
     {
       "alias": "comments",
       "args": null,
@@ -179,14 +180,13 @@ return {
         }
       ],
       "storageKey": null
-    },
-    (v1/*: any*/)
+    }
   ],
   "type": "Discussion",
   "abstractKey": null
 };
 })();
 
-(node as any).hash = "1273a9db1f12dc98515983ee3436caac";
+(node as any).hash = "b5afd5917c33aa798f6101dc9bcd9495";
 
 export default node;
