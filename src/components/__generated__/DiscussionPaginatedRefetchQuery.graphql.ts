@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<c6f0b3d5dfb4b39adda0b76022999f7a>>
+ * @generated SignedSource<<f05e03e7a7b13a90d45f8683c98d1d99>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,113 +10,99 @@
 
 import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type DashboardQuery$variables = {
-  discussion: number;
-  owner: string;
-  repo: string;
+export type DiscussionPaginatedRefetchQuery$variables = {
+  after?: string | null;
+  count?: number | null;
+  id: string;
 };
-export type DashboardQuery$data = {
-  readonly repository: {
-    readonly discussion: {
-      readonly " $fragmentSpreads": FragmentRefs<"Discussion">;
-    } | null;
+export type DiscussionPaginatedRefetchQuery$data = {
+  readonly node: {
+    readonly " $fragmentSpreads": FragmentRefs<"Discussion">;
   } | null;
 };
-export type DashboardQuery = {
-  response: DashboardQuery$data;
-  variables: DashboardQuery$variables;
+export type DiscussionPaginatedRefetchQuery = {
+  response: DiscussionPaginatedRefetchQuery$data;
+  variables: DiscussionPaginatedRefetchQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){
-var v0 = {
-  "defaultValue": null,
-  "kind": "LocalArgument",
-  "name": "discussion"
-},
-v1 = {
-  "defaultValue": null,
-  "kind": "LocalArgument",
-  "name": "owner"
-},
-v2 = {
-  "defaultValue": null,
-  "kind": "LocalArgument",
-  "name": "repo"
-},
-v3 = [
+var v0 = [
   {
-    "kind": "Variable",
-    "name": "name",
-    "variableName": "repo"
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "after"
   },
   {
-    "kind": "Variable",
-    "name": "owner",
-    "variableName": "owner"
+    "defaultValue": 20,
+    "kind": "LocalArgument",
+    "name": "count"
+  },
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "id"
   }
 ],
-v4 = [
+v1 = [
   {
     "kind": "Variable",
-    "name": "number",
-    "variableName": "discussion"
+    "name": "id",
+    "variableName": "id"
   }
 ],
-v5 = [
-  {
-    "kind": "Literal",
-    "name": "first",
-    "value": 20
-  }
-],
-v6 = {
+v2 = {
+  "kind": "Variable",
+  "name": "after",
+  "variableName": "after"
+},
+v3 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "__typename",
+  "storageKey": null
+},
+v4 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "id",
   "storageKey": null
 },
-v7 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
-  "name": "__typename",
-  "storageKey": null
-};
+v5 = [
+  (v2/*: any*/),
+  {
+    "kind": "Variable",
+    "name": "first",
+    "variableName": "count"
+  }
+];
 return {
   "fragment": {
-    "argumentDefinitions": [
-      (v0/*: any*/),
-      (v1/*: any*/),
-      (v2/*: any*/)
-    ],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "DashboardQuery",
+    "name": "DiscussionPaginatedRefetchQuery",
     "selections": [
       {
         "alias": null,
-        "args": (v3/*: any*/),
-        "concreteType": "Repository",
+        "args": (v1/*: any*/),
+        "concreteType": null,
         "kind": "LinkedField",
-        "name": "repository",
+        "name": "node",
         "plural": false,
         "selections": [
           {
-            "alias": null,
-            "args": (v4/*: any*/),
-            "concreteType": "Discussion",
-            "kind": "LinkedField",
-            "name": "discussion",
-            "plural": false,
-            "selections": [
+            "args": [
+              (v2/*: any*/),
               {
-                "args": null,
-                "kind": "FragmentSpread",
-                "name": "Discussion"
+                "kind": "Variable",
+                "name": "count",
+                "variableName": "count"
               }
             ],
-            "storageKey": null
+            "kind": "FragmentSpread",
+            "name": "Discussion"
           }
         ],
         "storageKey": null
@@ -127,29 +113,22 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": [
-      (v2/*: any*/),
-      (v1/*: any*/),
-      (v0/*: any*/)
-    ],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "DashboardQuery",
+    "name": "DiscussionPaginatedRefetchQuery",
     "selections": [
       {
         "alias": null,
-        "args": (v3/*: any*/),
-        "concreteType": "Repository",
+        "args": (v1/*: any*/),
+        "concreteType": null,
         "kind": "LinkedField",
-        "name": "repository",
+        "name": "node",
         "plural": false,
         "selections": [
+          (v3/*: any*/),
+          (v4/*: any*/),
           {
-            "alias": null,
-            "args": (v4/*: any*/),
-            "concreteType": "Discussion",
-            "kind": "LinkedField",
-            "name": "discussion",
-            "plural": false,
+            "kind": "InlineFragment",
             "selections": [
               {
                 "alias": null,
@@ -175,7 +154,7 @@ return {
                         "name": "node",
                         "plural": false,
                         "selections": [
-                          (v6/*: any*/),
+                          (v4/*: any*/),
                           {
                             "alias": null,
                             "args": null,
@@ -191,7 +170,7 @@ return {
                             "name": "author",
                             "plural": false,
                             "selections": [
-                              (v7/*: any*/),
+                              (v3/*: any*/),
                               {
                                 "alias": null,
                                 "args": null,
@@ -202,7 +181,7 @@ return {
                               {
                                 "kind": "InlineFragment",
                                 "selections": [
-                                  (v6/*: any*/)
+                                  (v4/*: any*/)
                                 ],
                                 "type": "Node",
                                 "abstractKey": "__isNode"
@@ -210,7 +189,7 @@ return {
                             ],
                             "storageKey": null
                           },
-                          (v7/*: any*/)
+                          (v3/*: any*/)
                         ],
                         "storageKey": null
                       },
@@ -250,7 +229,7 @@ return {
                     "storageKey": null
                   }
                 ],
-                "storageKey": "comments(first:20)"
+                "storageKey": null
               },
               {
                 "alias": null,
@@ -260,28 +239,27 @@ return {
                 "key": "Discussions_comments",
                 "kind": "LinkedHandle",
                 "name": "comments"
-              },
-              (v6/*: any*/)
+              }
             ],
-            "storageKey": null
-          },
-          (v6/*: any*/)
+            "type": "Discussion",
+            "abstractKey": null
+          }
         ],
         "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "647f736e1584b97e838f5687ef1659cf",
+    "cacheID": "272a0c516c079a25658ff3281901efd4",
     "id": null,
     "metadata": {},
-    "name": "DashboardQuery",
+    "name": "DiscussionPaginatedRefetchQuery",
     "operationKind": "query",
-    "text": "query DashboardQuery(\n  $repo: String!\n  $owner: String!\n  $discussion: Int!\n) {\n  repository(name: $repo, owner: $owner) {\n    discussion(number: $discussion) {\n      ...Discussion\n      id\n    }\n    id\n  }\n}\n\nfragment Discussion on Discussion {\n  comments(first: 20) {\n    edges {\n      node {\n        id\n        body\n        author {\n          __typename\n          login\n          ... on Node {\n            __isNode: __typename\n            id\n          }\n        }\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n"
+    "text": "query DiscussionPaginatedRefetchQuery(\n  $after: String\n  $count: Int = 20\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ...Discussion_2QE1um\n    id\n  }\n}\n\nfragment Discussion_2QE1um on Discussion {\n  comments(first: $count, after: $after) {\n    edges {\n      node {\n        id\n        body\n        author {\n          __typename\n          login\n          ... on Node {\n            __isNode: __typename\n            id\n          }\n        }\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n  id\n}\n"
   }
 };
 })();
 
-(node as any).hash = "7d90c47f553f91f9630985bd3564528f";
+(node as any).hash = "1273a9db1f12dc98515983ee3436caac";
 
 export default node;

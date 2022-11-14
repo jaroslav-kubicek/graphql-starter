@@ -1,41 +1,37 @@
-/* eslint-disable relay/unused-fields */
-// FIXME: uncomment the line above and fix issues
 import React from 'react';
 import { useLazyLoadQuery, graphql } from 'react-relay';
 import Heading from "@kiwicom/orbit-components/lib/Heading";
 import Stack from "@kiwicom/orbit-components/lib/Stack";
 
-import { User } from './User';
-import { Repositories } from './Repositories';
+import { Discussion } from './Discussion';
 import type { DashboardQuery } from './__generated__/DashboardQuery.graphql';
+import { TextLink } from '@kiwicom/orbit-components';
+
+const repoName = 'graphql-starter';
+const repoOwner = 'jaroslav-kubicek';
+const discussionNo = 3;
+const discussionLink = `https://github.com/jaroslav-kubicek/graphql-starter/discussions/${discussionNo}`;
 
 export const Dashboard = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const data = useLazyLoadQuery<DashboardQuery>(
       graphql`
-      query DashboardQuery {
-        user(login: "gaearon") {
-          id
-          name
-          twitterUsername
-          avatarUrl(size: 100)
-          followers {
-            totalCount
-          }
-          following {
-            totalCount
+      query DashboardQuery($repo: String!, $owner: String!, $discussion: Int!) {
+        repository(name: $repo, owner: $owner) {
+          discussion(number: $discussion) {
+            ...Discussion
           }
         }
       }
       `,
-      {}
+      { repo: repoName, owner: repoOwner, discussion: discussionNo }
   );
+
+  const discussion = data.repository?.discussion;
 
   return (
     <Stack>
-      <User />
-      <Heading>Repositories</Heading>
-      <Repositories />
+      <Heading>Discussion <TextLink href={discussionLink} external>#3</TextLink> in {repoName}</Heading>
+      {discussion && <Discussion discussion={discussion} />}
     </Stack>
   );
 }
