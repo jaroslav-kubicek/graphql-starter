@@ -32,11 +32,13 @@ yarn relay --watch
 
 ## Exercise
 
-The goal of this exercise is to understand how to define data requirements for the component with `useFragment` hook.
+The goal of this exercise is to fix TODO comment in `AddComment` component:
 
-1. Go to [Dashboard](https://github.com/jaroslav-kubicek/graphql-starter/blob/main/src/components/Dashboard.tsx) component and remove `/* eslint-disable relay/unused-fields */`
-2. Fix eslint rules by asking only for fields we need
-   1. you should use [useFragment](https://relay.dev/docs/api-reference/use-fragment/) in [User](https://github.com/jaroslav-kubicek/graphql-starter/blob/main/src/components/User.tsx) component and reference that fragment in the Dashboard query
-2. Do not hardcode `login: "gaearon"` in the query, instead pass it as variable to the query
+1. Use `addDiscussionComment` mutation to add new comments to the discussion.
+2. Whenever a new comment is successfully added, update the list below the form so a new comment is shown either at the top or bottom. Use [Relay directives to update the connection](https://relay.dev/docs/guided-tour/list-data/updating-connections/#using-declarative-directives).
+3. Add optimistic update to provide immediate feedback to a user.
+4. Optional tasks: 
+   1. Move `AddComment` to `Dashboard` component: does it change anything?
+   2. Do not rely on Relay directives, can you add a new comment imperatively in the updater function?
 
-Possible solution can be found in `step-i` branch.
+Possible solution can be found in `mutations-solution` branch.
